@@ -1,6 +1,5 @@
 package com.tour.user.controller;
 
-import com.tour.user.domain.entity.User;
 import com.tour.user.domain.service.UserService;
 import com.tour.user.dto.UserDTO;
 import com.tour.user.utility.UserMapper;
@@ -21,8 +20,8 @@ public class UserController {
     private UserMapper userMapper;
 
     @PostMapping
-    public ResponseEntity<User> registrarUsuario(@RequestBody UserDTO userDTO) {
-        User userRegistered = userService.registerUser(userMapper.userDTOToUser(userDTO));
+    public ResponseEntity<String> registrarUsuario(@RequestBody UserDTO userDTO) {
+        String userRegistered = userService.registerUser(userMapper.userDTOToUser(userDTO));
         return ResponseEntity.ok(userRegistered);
     }
 

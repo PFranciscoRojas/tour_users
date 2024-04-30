@@ -11,8 +11,13 @@ public class RabbitMQSender {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void enviarUsuario(User user) {
-        rabbitTemplate.convertAndSend("usuario-exchange", "usuario-key", user);
+    public void sendUserEvent(Object message) {
+        String routingKeyBase = "usuario.";
+        // Puedes modificar estas claves según la convención que prefieras
+        rabbitTemplate.convertAndSend("usuarioExchange", routingKeyBase + "alojamiento", message);
+        rabbitTemplate.convertAndSend("usuarioExchange", routingKeyBase + "vuelos", message);
+        rabbitTemplate.convertAndSend("usuarioExchange", routingKeyBase + "restaurantes", message);
+        rabbitTemplate.convertAndSend("usuarioExchange", routingKeyBase + "eventos", message);
     }
 
 }

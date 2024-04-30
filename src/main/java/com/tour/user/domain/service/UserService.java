@@ -15,10 +15,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User registerUser(User user) {
+    public String registerUser(User user) {
         // TODO: lógica para cifrar la contraseña y validar el usuario
 
-        rabbitMQSender.enviarUsuario(user);
-        return userRepository.save(user);
+        rabbitMQSender.sendUserEvent(user);
+        return "test";
     }
 }
