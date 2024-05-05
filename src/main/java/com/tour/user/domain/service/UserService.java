@@ -19,6 +19,7 @@ public class UserService {
         // TODO: lógica para cifrar la contraseña y validar el usuario
 
         rabbitMQSender.sendUserEvent(user);
-        return "test";
+        userRepository.save(user);
+        return "registro guardado";
     }
 }
